@@ -1,36 +1,8 @@
 const page = document.querySelector('.invitation-page');
 const hint = document.getElementById('openHint');
-const details = document.getElementById('details');
-const rsvpButton = document.getElementById('rsvpButton');
+const titleCard = document.getElementById('titleCard');
 const sparklesContainer = document.getElementById('sparkles');
 const waxSeal = document.getElementById('waxSeal');
-const targetDate = new Date('2027-09-18T16:30:00').getTime();
-
-const countdownRefs = {
-  days:    document.getElementById('days'),
-  hours:   document.getElementById('hours'),
-  minutes: document.getElementById('minutes'),
-  seconds: document.getElementById('seconds')
-};
-
-/* ── Countdown ─────────────────────────────────────── */
-
-function updateCountdown() {
-  if (!countdownRefs.days || !countdownRefs.hours || !countdownRefs.minutes || !countdownRefs.seconds) {
-    return;
-  }
-
-  const remaining = Math.max(targetDate - Date.now(), 0);
-  const days    = Math.floor(remaining / (1000 * 60 * 60 * 24));
-  const hours   = Math.floor((remaining / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((remaining / (1000 * 60)) % 60);
-  const seconds = Math.floor((remaining / 1000) % 60);
-
-  countdownRefs.days.textContent    = String(days).padStart(2, '0');
-  countdownRefs.hours.textContent   = String(hours).padStart(2, '0');
-  countdownRefs.minutes.textContent = String(minutes).padStart(2, '0');
-  countdownRefs.seconds.textContent = String(seconds).padStart(2, '0');
-}
 
 /* ── Background stars ──────────────────────────────── */
 
@@ -108,27 +80,17 @@ function openInvitation() {
     }, 500);
   }
 
-  setTimeout(() => {
-    if (details) {
-      details.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }, 1400);
+  if (titleCard) {
+    setTimeout(() => {
+      titleCard.classList.add('is-visible');
+    }, 1200);
+  }
 }
 
 /* ── Auto-open on load ─────────────────────────────── */
 
 generateStars();
-updateCountdown();
-setInterval(updateCountdown, 1000);
 
 window.addEventListener('load', () => {
-  setTimeout(openInvitation, 2500);
+  setTimeout(openInvitation, 1800);
 });
-
-/* ── RSVP ──────────────────────────────────────────── */
-
-if (rsvpButton) {
-  rsvpButton.addEventListener('click', () => {
-    window.location.href = 'mailto:rsvp@auroraandelias.com?subject=Wedding%20RSVP';
-  });
-}

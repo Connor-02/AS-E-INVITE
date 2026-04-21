@@ -1,43 +1,45 @@
 :root {
   --royal-blue: #1e3fa5;
   --royal-blue-deep: #060d2b;
-  --royal-blue-mid: #0e1f60;
-  --royal-blue-light: #2952c4;
   --gold: #c9a84c;
   --gold-bright: #f2ca5c;
   --gold-soft: #f5e0a0;
-  --gold-deep: #7a5a1a;
   --ivory: #faf5e9;
-  --ivory-warm: #f0e4c8;
-  --shadow: rgba(0, 0, 0, 0.65);
 }
 
 * {
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
 }
 
 body {
-  margin: 0;
-  min-height: 100vh;
   font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   color: var(--ivory);
   background:
     radial-gradient(ellipse at 50% 0%, #162458 0%, #070d28 65%),
     #060c22;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
-/* ── Star particles ────────────────────────────────── */
-
-.stars {
+.stars,
+.sparkles {
   position: fixed;
   inset: 0;
   pointer-events: none;
+}
+
+.stars {
   z-index: 0;
+}
+
+.sparkles {
+  z-index: 30;
 }
 
 .star {
@@ -51,17 +53,16 @@ body {
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0; transform: scale(1); }
-  50%       { opacity: var(--brightness); transform: scale(1.6); }
-}
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
 
-/* ── Sparkle burst particles ───────────────────────── */
-
-.sparkles {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 20;
+  50% {
+    opacity: var(--brightness);
+    transform: scale(1.6);
+  }
 }
 
 .sparkle {
@@ -75,56 +76,72 @@ body {
 }
 
 @keyframes sparkle-fly {
-  0%   { transform: translate(0, 0) scale(1);   opacity: 1; }
-  60%  { opacity: 0.8; }
-  100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
-}
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
 
-/* ── Page layout ───────────────────────────────────── */
+  60% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(0);
+    opacity: 0;
+  }
+}
 
 .invitation-page {
-  min-height: 100vh;
-  padding: 1.5rem 1rem 5rem;
   position: relative;
   z-index: 1;
+  width: 100%;
+  height: 100%;
 }
-
-/* ── Hero / envelope scene ─────────────────────────── */
 
 .hero {
-  min-height: 75vh;
-  display: grid;
-  place-content: center;
-  gap: 1.5rem;
   position: relative;
-}
-
-@keyframes env-enter {
-  0%   { opacity: 0; transform: translateY(3rem) scale(0.94); }
-  100% { opacity: 1; transform: translateY(0)    scale(1); }
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
 }
 
 .envelope-scene {
-  width: min(22rem, 88vw);
+  width: min(48rem, 88vw);
+  max-width: 100%;
+  position: relative;
   animation: env-enter 1.1s cubic-bezier(0.17, 0.88, 0.32, 1) both;
+  z-index: 2;
+}
+
+@keyframes env-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem) scale(0.94);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .envelope-shadow {
   display: block;
-  height: 2.5rem;
-  margin: 0 10% -0.75rem;
+  height: 3rem;
+  margin: 0 16% -1rem;
   background: rgba(0, 0, 0, 0.55);
   border-radius: 999px;
-  filter: blur(16px);
-  transition: transform 900ms cubic-bezier(0.18, 0.82, 0.3, 1),
-              opacity 900ms ease;
+  filter: blur(18px);
+  transition: transform 900ms cubic-bezier(0.18, 0.82, 0.3, 1), opacity 900ms ease;
 }
 
 .envelope {
   position: relative;
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 11;
+  aspect-ratio: 16 / 10;
   transform-style: preserve-3d;
   transition: transform 900ms cubic-bezier(0.18, 0.82, 0.3, 1);
 }
@@ -134,24 +151,25 @@ body {
 .envelope-flap {
   position: absolute;
   inset: 0;
-  border-radius: 0.4rem;
+  border-radius: 0.6rem;
 }
 
 .envelope-lining {
   background: linear-gradient(150deg, #fff9ef 0%, #ede2cf 100%);
   border: 1.5px solid rgba(201, 168, 76, 0.85);
   box-shadow:
-    0 0 0 2px rgba(201, 168, 76, 0.22) inset,
+    0 0 0 2px rgba(201, 168, 76, 0.2) inset,
     0 0 40px rgba(201, 168, 76, 0.08) inset;
 }
 
 .envelope-front {
-  clip-path: polygon(0 100%, 50% 46%, 100% 100%);
+  clip-path: polygon(0 100%, 50% 48%, 100% 100%);
   background: linear-gradient(160deg, #f7efdf 30%, #e8d8bc 100%);
-  border-left:   1.5px solid rgba(201, 168, 76, 0.7);
-  border-right:  1.5px solid rgba(201, 168, 76, 0.7);
+  border-left: 1.5px solid rgba(201, 168, 76, 0.7);
+  border-right: 1.5px solid rgba(201, 168, 76, 0.7);
   border-bottom: 1.5px solid rgba(201, 168, 76, 0.7);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  z-index: 2;
 }
 
 .envelope-flap {
@@ -159,48 +177,57 @@ body {
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   background: linear-gradient(165deg, #2550b8 0%, #0c2368 65%, #081232 100%);
   transform-origin: top center;
-  transition: transform 1100ms cubic-bezier(0.2, 0.75, 0.23, 1),
-              filter 1100ms ease;
+  transition: transform 1100ms cubic-bezier(0.2, 0.75, 0.23, 1), filter 1100ms ease;
   z-index: 5;
-  border: 1.5px solid rgba(201, 168, 76, 0.85);
+  border: 1.5px solid rgba(201, 168, 76, 0.9);
   box-shadow: 0 12px 22px rgba(0, 0, 0, 0.5);
 }
 
-/* Gold foil line on flap */
-.envelope-flap::after {
-  content: "";
+.gold-flower {
   position: absolute;
+  z-index: 6;
   left: 50%;
   top: 18%;
   transform: translateX(-50%);
-  width: 36%;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(201, 168, 76, 0.7), transparent);
+  width: clamp(4rem, 10vw, 6.5rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  pointer-events: none;
 }
 
-/* ── Wax seal ───────────────────────────────────────── */
+.gold-flower::before,
+.gold-flower::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
 
-@keyframes seal-pulse {
-  0%, 100% {
-    box-shadow:
-      0 0 0 3px rgba(201, 168, 76, 0.25) inset,
-      0 6px 18px rgba(0, 0, 0, 0.55);
-  }
-  50% {
-    box-shadow:
-      0 0 0 3px rgba(201, 168, 76, 0.25) inset,
-      0 0 36px rgba(201, 168, 76, 0.75),
-      0 6px 18px rgba(0, 0, 0, 0.55);
-  }
+.gold-flower::before {
+  background:
+    radial-gradient(circle at 50% 0, rgba(242, 202, 92, 0.95) 0 14%, transparent 16%),
+    radial-gradient(circle at 100% 50%, rgba(242, 202, 92, 0.9) 0 14%, transparent 16%),
+    radial-gradient(circle at 50% 100%, rgba(242, 202, 92, 0.95) 0 14%, transparent 16%),
+    radial-gradient(circle at 0 50%, rgba(242, 202, 92, 0.9) 0 14%, transparent 16%),
+    radial-gradient(circle at 18% 18%, rgba(201, 168, 76, 0.85) 0 12%, transparent 15%),
+    radial-gradient(circle at 82% 18%, rgba(201, 168, 76, 0.85) 0 12%, transparent 15%),
+    radial-gradient(circle at 18% 82%, rgba(201, 168, 76, 0.85) 0 12%, transparent 15%),
+    radial-gradient(circle at 82% 82%, rgba(201, 168, 76, 0.85) 0 12%, transparent 15%);
+}
+
+.gold-flower::after {
+  inset: 34%;
+  background: radial-gradient(circle, #f9dea1 0%, #c9a84c 60%, #7a5a1a 100%);
+  box-shadow: 0 0 14px rgba(242, 202, 92, 0.65);
 }
 
 .wax-seal {
   position: absolute;
-  z-index: 6;
+  z-index: 7;
   top: 44%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: clamp(3.2rem, 17vw, 4rem);
+  width: clamp(3.6rem, 8vw, 4.8rem);
   aspect-ratio: 1;
   border-radius: 50%;
   display: grid;
@@ -212,13 +239,12 @@ body {
   box-shadow:
     0 0 0 3px rgba(201, 168, 76, 0.25) inset,
     0 6px 18px rgba(0, 0, 0, 0.55);
-  transition: transform 550ms ease, opacity 550ms ease, box-shadow 550ms ease;
-  animation: seal-pulse 2.5s ease-in-out 1.2s 2;
+  transition: transform 550ms ease, opacity 550ms ease;
 }
 
 .seal-monogram {
   font-family: "Cinzel", "Georgia", serif;
-  font-size: clamp(0.75rem, 4vw, 1rem);
+  font-size: clamp(0.85rem, 2vw, 1.1rem);
   font-weight: 600;
   letter-spacing: 0.08em;
   color: var(--gold-soft);
@@ -230,346 +256,97 @@ body {
   inset: 3px;
   border-radius: 50%;
   border: 1px solid rgba(201, 168, 76, 0.45);
-  pointer-events: none;
 }
 
-/* ── Invitation card inside envelope ───────────────── */
-
-.invitation-card {
+.hero-hint {
   position: absolute;
-  z-index: 3;
-  left: 8%;
-  right: 8%;
-  bottom: 5%;
-  height: 84%;
-  border-radius: 0.5rem;
-  background:
-    linear-gradient(155deg, #fefbf2 0%, #f5ead8 100%);
-  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.4);
-  transform: translateY(60%);
-  transition: transform 1150ms cubic-bezier(0.17, 0.88, 0.32, 1);
-  overflow: hidden;
+  bottom: 8vh;
+  text-align: center;
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  letter-spacing: 0.06em;
+  color: rgba(240, 228, 200, 0.75);
+  font-style: italic;
+  transition: opacity 600ms ease;
+  z-index: 2;
 }
 
-/* Subtle shimmer overlay on card */
-.invitation-card::before {
-  content: "";
+.title-card {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    110deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.35) 50%,
-    transparent 70%
-  );
-  background-size: 200% 100%;
-  animation: card-shimmer 3.5s ease-in-out infinite 4s;
-}
-
-@keyframes card-shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position:  200% center; }
-}
-
-.card-inner {
-  border: 1.5px solid rgba(201, 168, 76, 0.6);
-  height: 100%;
-  border-radius: 0.4rem;
+  z-index: 3;
   display: grid;
   place-content: center;
   gap: 0.5rem;
   text-align: center;
-  padding: 1rem 0.8rem;
-  color: var(--royal-blue-deep);
+  padding: 1rem;
+  background: radial-gradient(circle at 50% 35%, rgba(8, 20, 61, 0.2), rgba(6, 12, 34, 0.78));
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.96);
+  transition: opacity 600ms ease, transform 600ms ease;
 }
 
-.card-ornament {
-  font-size: clamp(0.5rem, 2.2vw, 0.65rem);
-  color: var(--gold);
-  letter-spacing: 0.25em;
+.title-card.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
 }
 
 .card-title {
   font-family: "Cinzel", "Georgia", serif;
-  font-size: clamp(0.65rem, 2.8vw, 0.85rem);
+  font-size: clamp(0.85rem, 2vw, 1.2rem);
   font-weight: 500;
-  color: #5c4210;
+  color: #f6dfaa;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.24em;
 }
 
 .card-names {
-  font-family: "Great Vibes", cursive, Georgia, serif;
-  font-size: clamp(1.3rem, 7vw, 1.8rem);
-  color: var(--royal-blue);
-  line-height: 1.1;
-}
-
-/* ── Hero hint ─────────────────────────────────────── */
-
-.hero-hint {
-  text-align: center;
-  font-size: 0.9rem;
-  letter-spacing: 0.06em;
-  color: rgba(240, 228, 200, 0.65);
-  font-style: italic;
-  transition: opacity 600ms ease;
-}
-
-/* ── Details section ───────────────────────────────── */
-
-.details {
-  opacity: 0;
-  transform: translateY(1.6rem);
-  pointer-events: none;
-  transition: opacity 1000ms ease, transform 1000ms ease;
-}
-
-.details-shell {
-  max-width: 44rem;
-  margin: 0 auto;
-  padding: 2.8rem 1.5rem;
-  border-radius: 1.2rem;
-  background:
-    linear-gradient(150deg,
-      rgba(14, 31, 96, 0.82) 0%,
-      rgba(6, 13, 43, 0.88) 100%);
-  border: 1.5px solid rgba(201, 168, 76, 0.45);
-  box-shadow:
-    0 0 0 1px rgba(201, 168, 76, 0.12) inset,
-    0 32px 56px rgba(0, 0, 0, 0.6),
-    0 0 80px rgba(14, 31, 96, 0.4);
-  text-align: center;
-  backdrop-filter: blur(10px);
-}
-
-.kicker {
   margin: 0;
-  font-family: "Cinzel", "Georgia", serif;
-  text-transform: uppercase;
-  letter-spacing: 0.28em;
-  font-size: 0.65rem;
-  color: var(--gold);
-}
-
-.ornament-row {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin: 0.8rem auto;
-  max-width: 18rem;
-}
-
-.ornament-row span:first-child,
-.ornament-row span:last-child {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(201, 168, 76, 0.55), transparent);
-}
-
-.orn-diamond {
-  color: var(--gold);
-  font-size: 0.55rem;
-  flex: none;
-}
-
-h1 {
-  margin: 0.6rem 0 0.4rem;
   font-family: "Great Vibes", cursive, Georgia, serif;
   font-weight: 400;
+  font-size: clamp(2.4rem, 9vw, 6rem);
   color: var(--ivory);
-  font-size: clamp(2.2rem, 10vw, 4rem);
   line-height: 1.05;
-  text-shadow: 0 2px 20px rgba(201, 168, 76, 0.3);
+  text-shadow: 0 2px 20px rgba(201, 168, 76, 0.35);
 }
 
-h1 span {
+.card-names span {
   color: var(--gold-bright);
 }
 
-.date,
-.venue {
-  margin: 0.45rem 0;
-  font-family: "Cinzel", "Georgia", serif;
-  font-size: clamp(0.75rem, 2.8vw, 0.9rem);
-  color: var(--gold-soft);
-  letter-spacing: 0.1em;
-}
-
-.message {
-  margin: 1.2rem auto 0;
-  max-width: 36ch;
-  line-height: 1.75;
-  font-size: 1.05rem;
-  color: rgba(250, 245, 233, 0.82);
-  font-style: italic;
-  font-weight: 300;
-}
-
-.divider {
-  width: 8rem;
-  height: 1px;
-  margin: 2rem auto;
-  background: linear-gradient(to right, transparent, rgba(201, 168, 76, 0.7), transparent);
-}
-
-/* ── Countdown ─────────────────────────────────────── */
-
-.countdown {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.9rem;
-}
-
-.countdown div {
-  padding: 1rem 0.5rem;
-  border-radius: 0.85rem;
-  border: 1px solid rgba(201, 168, 76, 0.35);
-  background:
-    linear-gradient(135deg, rgba(37, 80, 184, 0.25), rgba(6, 13, 43, 0.4));
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(201, 168, 76, 0.1) inset;
-  backdrop-filter: blur(4px);
-}
-
-.countdown span {
-  display: block;
-  font-family: "Cinzel", "Georgia", serif;
-  color: var(--ivory);
-  font-size: clamp(1.4rem, 6vw, 2rem);
-  font-weight: 600;
-  text-shadow: 0 0 18px rgba(201, 168, 76, 0.4);
-}
-
-.countdown small {
-  font-family: "Cinzel", "Georgia", serif;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 0.6rem;
+.card-ornament {
+  margin: 0;
+  font-size: clamp(0.65rem, 1.4vw, 0.9rem);
   color: var(--gold);
+  letter-spacing: 0.35em;
 }
-
-/* ── RSVP button ───────────────────────────────────── */
-
-.rsvp-button {
-  display: inline-block;
-  margin-top: 1.8rem;
-  font-family: "Cinzel", "Georgia", serif;
-  cursor: pointer;
-  color: var(--ivory);
-  background: linear-gradient(150deg, #2550b8, #091c4a 70%);
-  border: 1.5px solid rgba(201, 168, 76, 0.8);
-  box-shadow:
-    0 0 0 1px rgba(201, 168, 76, 0.2) inset,
-    0 10px 24px rgba(0, 0, 0, 0.4);
-  border-radius: 999px;
-  padding: 0.9rem 2.2rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-size: 0.72rem;
-  transition: transform 200ms ease, box-shadow 200ms ease;
-}
-
-.rsvp-button:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 0 0 1px rgba(201, 168, 76, 0.35) inset,
-    0 14px 32px rgba(0, 0, 0, 0.5),
-    0 0 20px rgba(201, 168, 76, 0.25);
-}
-
-/* ── Gallery ───────────────────────────────────────── */
-
-.gallery {
-  margin-top: 1.8rem;
-  display: grid;
-  gap: 0.75rem;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.photo {
-  height: 7.5rem;
-  border-radius: 0.85rem;
-  border: 1px solid rgba(201, 168, 76, 0.35);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-}
-
-.photo-one {
-  grid-column: span 2;
-  background:
-    linear-gradient(150deg, rgba(14, 31, 96, 0.55), rgba(201, 168, 76, 0.18)),
-    radial-gradient(circle at 25% 30%, rgba(255, 255, 255, 0.4), transparent 40%),
-    #3a5090;
-}
-
-.photo-two {
-  background:
-    linear-gradient(150deg, rgba(37, 80, 184, 0.55), rgba(230, 190, 100, 0.2)),
-    #2a3a72;
-}
-
-.photo-three {
-  background:
-    linear-gradient(150deg, rgba(14, 31, 96, 0.55), rgba(201, 168, 76, 0.2)),
-    #253264;
-}
-
-/* ── Opened state ──────────────────────────────────── */
 
 .invitation-page.opened .envelope {
-  transform: translateY(-0.6rem) scale(1.02);
+  transform: translateY(-0.6rem) scale(1.01);
 }
 
 .invitation-page.opened .envelope-shadow {
-  transform: scale(0.85);
-  opacity: 0.3;
+  transform: scale(0.82);
+  opacity: 0.25;
 }
 
 .invitation-page.opened .envelope-flap {
-  transform: rotateX(-170deg);
+  transform: rotateX(-178deg);
   filter: brightness(1.1);
 }
 
 .invitation-page.opened .wax-seal {
-  transform: translate(-50%, -50%) scale(0.7) rotate(15deg);
+  transform: translate(-50%, -50%) scale(0.72);
   opacity: 0;
-  animation: none;
-  box-shadow: 0 0 40px rgba(201, 168, 76, 0.9);
 }
 
-.invitation-page.opened .invitation-card {
-  transform: translateY(-16%);
-}
-
-.invitation-page.opened .details {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-/* ── Responsive ────────────────────────────────────── */
-
-@media (min-width: 760px) {
-  .invitation-page {
-    padding: 2.8rem 1.5rem 6rem;
-  }
-
-  .hero {
-    min-height: 80vh;
-  }
-
+@media (max-width: 700px) {
   .envelope-scene {
-    width: min(26rem, 70vw);
+    width: min(25rem, 92vw);
   }
 
-  .countdown {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .gallery {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .photo-one {
-    grid-column: span 1;
+  .hero-hint {
+    bottom: 5vh;
   }
 }
