@@ -4,36 +4,47 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aurora & Elias | Wedding Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="stars" id="stars" aria-hidden="true"></div>
+  <div class="sparkles" id="sparkles" aria-hidden="true"></div>
+
   <main class="invitation-page" id="top">
-    <section class="hero" aria-label="Envelope opening invitation">
-      <div class="hero-glow" aria-hidden="true"></div>
-      <button class="envelope-wrap" id="openEnvelope" aria-label="Open invitation envelope">
-        <span class="envelope-shadow" aria-hidden="true"></span>
+    <section class="hero" aria-label="Invitation envelope opening">
+      <div class="envelope-scene" id="openEnvelope" aria-hidden="true">
+        <span class="envelope-shadow"></span>
         <span class="envelope">
-          <span class="envelope-flap" aria-hidden="true"></span>
-          <span class="envelope-lining" aria-hidden="true"></span>
-          <span class="envelope-front" aria-hidden="true"></span>
-          <span class="wax-seal" aria-hidden="true">AE</span>
-          <span class="invitation-card" aria-hidden="true">
+          <span class="envelope-flap"></span>
+          <span class="envelope-lining"></span>
+          <span class="envelope-front"></span>
+          <span class="wax-seal" id="waxSeal">
+            <span class="seal-monogram">AE</span>
+            <span class="seal-ring"></span>
+          </span>
+          <span class="invitation-card">
             <span class="card-inner">
-              <span class="card-top-line"></span>
+              <span class="card-ornament">✦ ✦ ✦</span>
               <strong class="card-title">Wedding Invitation</strong>
               <span class="card-names">Aurora &amp; Elias</span>
+              <span class="card-ornament">✦ ✦ ✦</span>
             </span>
           </span>
         </span>
-      </button>
-      <p class="hero-hint" id="openHint">Tap the royal seal to unveil your invitation</p>
+      </div>
+      <p class="hero-hint" id="openHint">Your invitation is being unveiled…</p>
     </section>
 
     <section class="details" id="details" aria-live="polite">
       <div class="details-shell">
         <p class="kicker">Together with their families</p>
+        <div class="ornament-row" aria-hidden="true"><span></span><span class="orn-diamond">◆</span><span></span></div>
         <h1>Aurora Sterling <span>&amp;</span> Elias Vale</h1>
-        <p class="date">Saturday, 18 September 2027 • 4:30 PM</p>
+        <div class="ornament-row" aria-hidden="true"><span></span><span class="orn-diamond">◆</span><span></span></div>
+        <p class="date">Saturday, 18 September 2027 &nbsp;·&nbsp; 4:30 PM</p>
         <p class="venue">The Grand Blue Hall, Lakeview Estate</p>
         <p class="message">
           With joyful hearts, we invite you to celebrate our marriage and share in an evening of romance,
