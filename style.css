@@ -1,0 +1,372 @@
+:root {
+  --royal-blue: #10347f;
+  --royal-blue-deep: #091e4d;
+  --gold: #d1a64b;
+  --gold-soft: #f0d590;
+  --cream: #f8f2e6;
+  --ink: #1d2333;
+  --shadow: rgba(7, 15, 35, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Georgia", "Times New Roman", serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 20% 10%, rgba(209, 166, 75, 0.16), transparent 46%),
+    radial-gradient(circle at 82% 24%, rgba(16, 52, 127, 0.25), transparent 50%),
+    linear-gradient(160deg, #f6f1e8, #ece2cf 55%, #d5c2a4 100%);
+}
+
+.invitation-page {
+  min-height: 100vh;
+  padding: 1.5rem 1rem 4rem;
+}
+
+.hero {
+  min-height: 70vh;
+  display: grid;
+  place-content: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.hero-glow {
+  position: absolute;
+  inset: auto 50% 16%;
+  width: min(22rem, 75vw);
+  height: 5rem;
+  transform: translateX(-50%);
+  filter: blur(24px);
+  background: rgba(16, 52, 127, 0.25);
+}
+
+.envelope-wrap {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  width: min(20rem, 88vw);
+  cursor: pointer;
+}
+
+.envelope {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  transform-style: preserve-3d;
+  transition: transform 900ms cubic-bezier(0.18, 0.82, 0.3, 1);
+}
+
+.envelope-shadow {
+  position: absolute;
+  inset: auto 8% -9%;
+  height: 2.25rem;
+  background: rgba(8, 11, 26, 0.36);
+  border-radius: 999px;
+  filter: blur(13px);
+  transition: transform 900ms cubic-bezier(0.18, 0.82, 0.3, 1), opacity 900ms ease;
+}
+
+.envelope-lining,
+.envelope-front,
+.envelope-flap {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.35rem;
+}
+
+.envelope-lining {
+  background: linear-gradient(150deg, #fff9ef 0%, #f1e4cf 80%);
+  border: 1px solid rgba(209, 166, 75, 0.8);
+  box-shadow: 0 0 0 2px rgba(209, 166, 75, 0.25) inset;
+}
+
+.envelope-front {
+  clip-path: polygon(0 100%, 50% 48%, 100% 100%);
+  background:
+    linear-gradient(155deg, #f7efdf 35%, #ead8bc 100%);
+  border-left: 1px solid rgba(209, 166, 75, 0.7);
+  border-right: 1px solid rgba(209, 166, 75, 0.7);
+  border-bottom: 1px solid rgba(209, 166, 75, 0.7);
+  box-shadow: 0 8px 24px rgba(10, 25, 60, 0.2);
+}
+
+.envelope-flap {
+  height: 58%;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background:
+    linear-gradient(160deg, #214ca5 0%, #0b2762 70%, #081838 100%);
+  transform-origin: top;
+  transition: transform 1000ms cubic-bezier(0.2, 0.75, 0.23, 1), filter 1000ms ease;
+  z-index: 5;
+  border: 1px solid rgba(209, 166, 75, 0.8);
+  box-shadow: 0 10px 16px rgba(4, 11, 30, 0.45);
+}
+
+.wax-seal {
+  position: absolute;
+  z-index: 6;
+  top: 44%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(3rem, 16vw, 3.6rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--gold-soft);
+  background:
+    radial-gradient(circle at 30% 26%, rgba(255, 255, 255, 0.2), transparent 35%),
+    linear-gradient(160deg, #214da8, #0b235f 62%, #061734 100%);
+  border: 2px solid rgba(209, 166, 75, 0.95);
+  box-shadow:
+    0 0 0 2px rgba(209, 166, 75, 0.35) inset,
+    0 5px 12px rgba(3, 8, 24, 0.45);
+  transition: transform 500ms ease, opacity 500ms ease, box-shadow 500ms ease;
+}
+
+.invitation-card {
+  position: absolute;
+  z-index: 3;
+  left: 8%;
+  right: 8%;
+  bottom: 6%;
+  height: 82%;
+  padding: 0.45rem;
+  border-radius: 0.45rem;
+  background: linear-gradient(150deg, #fefbf2 0%, #f7ebd8 100%);
+  box-shadow: 0 16px 26px rgba(7, 18, 39, 0.28);
+  transform: translateY(57%);
+  transition: transform 1050ms cubic-bezier(0.17, 0.88, 0.32, 1);
+}
+
+.card-inner {
+  border: 1px solid rgba(209, 166, 75, 0.6);
+  height: 100%;
+  border-radius: 0.35rem;
+  display: grid;
+  place-content: center;
+  gap: 0.45rem;
+  text-align: center;
+  padding: 1rem 0.6rem;
+}
+
+.card-top-line {
+  width: 2.8rem;
+  height: 1px;
+  margin: 0 auto;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+.card-title {
+  font-size: clamp(0.8rem, 3.4vw, 1rem);
+  color: #7d5b1d;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.card-names {
+  font-size: clamp(1.2rem, 6vw, 1.55rem);
+  color: var(--royal-blue);
+}
+
+.hero-hint {
+  text-align: center;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  color: #4b3f2c;
+}
+
+.details {
+  opacity: 0;
+  transform: translateY(1.4rem);
+  pointer-events: none;
+  transition: opacity 900ms ease, transform 900ms ease;
+}
+
+.details-shell {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 2.2rem 1.1rem;
+  border-radius: 1rem;
+  background: linear-gradient(150deg, rgba(255, 252, 246, 0.92), rgba(244, 235, 219, 0.88));
+  border: 1px solid rgba(209, 166, 75, 0.42);
+  box-shadow: 0 24px 38px var(--shadow);
+  text-align: center;
+  backdrop-filter: blur(6px);
+}
+
+.kicker {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  color: #886524;
+}
+
+h1 {
+  margin: 1rem 0 0.5rem;
+  color: var(--royal-blue-deep);
+  font-size: clamp(2rem, 9vw, 3.6rem);
+  line-height: 1.06;
+}
+
+h1 span {
+  color: var(--gold);
+}
+
+.date,
+.venue {
+  margin: 0.35rem 0;
+  color: #29458b;
+  font-size: 1rem;
+}
+
+.message {
+  margin: 1.1rem auto 0;
+  max-width: 35ch;
+  line-height: 1.65;
+}
+
+.divider {
+  width: 8rem;
+  height: 1px;
+  margin: 1.6rem auto;
+  background: linear-gradient(to right, transparent, #c69f4b, transparent);
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.countdown div {
+  padding: 0.8rem 0.4rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(209, 166, 75, 0.45);
+  background: rgba(255, 253, 248, 0.78);
+}
+
+.countdown span {
+  display: block;
+  color: var(--royal-blue-deep);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.countdown small {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.65rem;
+  color: #8c6a2e;
+}
+
+.rsvp-button {
+  display: inline-block;
+  margin-top: 1.5rem;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(150deg, #133d98, #091c4a 70%);
+  border: 1px solid rgba(209, 166, 75, 0.75);
+  box-shadow: 0 8px 20px rgba(13, 33, 80, 0.3), 0 0 0 1px rgba(209, 166, 75, 0.35) inset;
+  border-radius: 999px;
+  padding: 0.8rem 1.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.gallery {
+  margin-top: 1.7rem;
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.photo {
+  height: 7rem;
+  border-radius: 0.8rem;
+  border: 1px solid rgba(209, 166, 75, 0.4);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+}
+
+.photo-one {
+  grid-column: span 2;
+  background:
+    linear-gradient(150deg, rgba(8, 32, 87, 0.45), rgba(209, 166, 75, 0.2)),
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.5), transparent 38%),
+    #8f7c5a;
+}
+
+.photo-two {
+  background: linear-gradient(150deg, rgba(35, 66, 143, 0.5), rgba(234, 193, 105, 0.26)), #7f8daa;
+}
+
+.photo-three {
+  background: linear-gradient(150deg, rgba(19, 39, 86, 0.5), rgba(209, 166, 75, 0.25)), #767062;
+}
+
+.invitation-page.opened .envelope {
+  transform: translateY(-0.5rem) scale(1.01);
+}
+
+.invitation-page.opened .envelope-shadow {
+  transform: scale(0.9);
+  opacity: 0.4;
+}
+
+.invitation-page.opened .envelope-flap {
+  transform: rotateX(-168deg);
+  filter: brightness(1.08);
+}
+
+.invitation-page.opened .wax-seal {
+  transform: translate(-50%, -50%) scale(0.74);
+  opacity: 0;
+  box-shadow: 0 0 26px rgba(209, 166, 75, 0.8);
+}
+
+.invitation-page.opened .invitation-card {
+  transform: translateY(-14%);
+}
+
+.invitation-page.opened .details {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+@media (min-width: 760px) {
+  .invitation-page {
+    padding: 2.4rem 1.5rem 5rem;
+  }
+
+  .hero {
+    min-height: 78vh;
+  }
+
+  .countdown {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .photo-one {
+    grid-column: span 1;
+  }
+}

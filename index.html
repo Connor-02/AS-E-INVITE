@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aurora & Elias | Wedding Invitation</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="invitation-page" id="top">
+    <section class="hero" aria-label="Envelope opening invitation">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <button class="envelope-wrap" id="openEnvelope" aria-label="Open invitation envelope">
+        <span class="envelope-shadow" aria-hidden="true"></span>
+        <span class="envelope">
+          <span class="envelope-flap" aria-hidden="true"></span>
+          <span class="envelope-lining" aria-hidden="true"></span>
+          <span class="envelope-front" aria-hidden="true"></span>
+          <span class="wax-seal" aria-hidden="true">AE</span>
+          <span class="invitation-card" aria-hidden="true">
+            <span class="card-inner">
+              <span class="card-top-line"></span>
+              <strong class="card-title">Wedding Invitation</strong>
+              <span class="card-names">Aurora &amp; Elias</span>
+            </span>
+          </span>
+        </span>
+      </button>
+      <p class="hero-hint" id="openHint">Tap the royal seal to unveil your invitation</p>
+    </section>
+
+    <section class="details" id="details" aria-live="polite">
+      <div class="details-shell">
+        <p class="kicker">Together with their families</p>
+        <h1>Aurora Sterling <span>&amp;</span> Elias Vale</h1>
+        <p class="date">Saturday, 18 September 2027 • 4:30 PM</p>
+        <p class="venue">The Grand Blue Hall, Lakeview Estate</p>
+        <p class="message">
+          With joyful hearts, we invite you to celebrate our marriage and share in an evening of romance,
+          music, and candlelit elegance.
+        </p>
+        <div class="divider" aria-hidden="true"></div>
+
+        <div class="countdown" aria-label="Countdown to wedding day">
+          <div><span id="days">00</span><small>Days</small></div>
+          <div><span id="hours">00</span><small>Hours</small></div>
+          <div><span id="minutes">00</span><small>Minutes</small></div>
+          <div><span id="seconds">00</span><small>Seconds</small></div>
+        </div>
+
+        <a class="rsvp-button" href="#" role="button">RSVP</a>
+
+        <div class="gallery" aria-label="Moments gallery">
+          <article class="photo photo-one"></article>
+          <article class="photo photo-two"></article>
+          <article class="photo photo-three"></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
