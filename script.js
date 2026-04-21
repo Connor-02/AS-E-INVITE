@@ -1,6 +1,8 @@
 const page = document.querySelector('.invitation-page');
 const openEnvelopeButton = document.getElementById('openEnvelope');
 const hint = document.getElementById('openHint');
+const details = document.getElementById('details');
+const rsvpButton = document.getElementById('rsvpButton');
 const targetDate = new Date('2027-09-18T16:30:00').getTime();
 
 const countdownRefs = {
@@ -11,6 +13,10 @@ const countdownRefs = {
 };
 
 function updateCountdown() {
+  if (!countdownRefs.days || !countdownRefs.hours || !countdownRefs.minutes || !countdownRefs.seconds) {
+    return;
+  }
+
   const now = Date.now();
   const remaining = Math.max(targetDate - now, 0);
 
@@ -26,7 +32,7 @@ function updateCountdown() {
 }
 
 function openInvitation() {
-  if (page.classList.contains('opened')) {
+  if (!page || !hint || !details || page.classList.contains('opened')) {
     return;
   }
 
@@ -34,17 +40,25 @@ function openInvitation() {
   hint.textContent = 'Welcome to our wedding celebration';
 
   setTimeout(() => {
-    document.getElementById('details').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    details.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 900);
 }
 
-openEnvelopeButton.addEventListener('click', openInvitation);
-openEnvelopeButton.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter' || event.key === ' ') {
-    event.preventDefault();
-    openInvitation();
-  }
-});
+if (openEnvelopeButton) {
+  openEnvelopeButton.addEventListener('click', openInvitation);
+  openEnvelopeButton.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      openInvitation();
+    }
+  });
+}
+
+if (rsvpButton) {
+  rsvpButton.addEventListener('click', () => {
+    window.location.href = 'mailto:rsvp@auroraandelias.com?subject=Wedding%20RSVP';
+  });
+}
 
 updateCountdown();
 setInterval(updateCountdown, 1000);
