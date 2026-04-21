@@ -278,6 +278,8 @@ h1 span {
   display: inline-block;
   margin-top: 1.5rem;
   text-decoration: none;
+  font-family: inherit;
+  cursor: pointer;
   color: #fff;
   background: linear-gradient(150deg, #133d98, #091c4a 70%);
   border: 1px solid rgba(209, 166, 75, 0.75);
